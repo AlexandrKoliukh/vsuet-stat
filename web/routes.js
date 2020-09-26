@@ -1,6 +1,6 @@
 const host = '';
-const prefix = 'api/v1/tasks';
+const prefix = 'api/v1/stat';
 
 export default {
-  columnsPath: () => [host, prefix, 'columns'].join('/'),
+  profilesPath: () => [host, prefix, 'profiles'].join('/'),
 };

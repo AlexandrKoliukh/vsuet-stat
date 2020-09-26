@@ -7,8 +7,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { App } from './App';
 
-const { profiles } = gon;
-console.log(profiles);
+const { profiles, subjects, teachers } = gon;
+console.log(profiles, subjects, teachers);
 
 const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',

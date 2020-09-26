@@ -3,6 +3,8 @@ import services from './services';
 
 export default (router, io) => {
   const profilesService = new services.ProfilesService();
+  const teachersService = new services.TeachersService();
+  const subjectsService = new services.SubjectsService();
   const apiRouter = new Router();
 
   apiRouter
@@ -30,11 +32,15 @@ export default (router, io) => {
   return router
     .get('/', async (ctx) => {
       const profiles = await profilesService.getProfiles();
+      const teachers = await teachersService.getTeachers();
+      const subjects = await subjectsService.getSubjects();
       await ctx.render('root', {
         gon: {
           profiles,
+          teachers,
+          subjects,
         },
       });
     })
-    .use('/api/v1/root', apiRouter.routes(), apiRouter.allowedMethods());
+    .use('/api/v1/stat', apiRouter.routes(), apiRouter.allowedMethods());
 };
