@@ -1,3 +1,4 @@
+exports.seed = () => {};
 // exports.seed = (knex) =>
 //   knex('subjects')
 //     .del()
