@@ -1,4 +1,6 @@
 import { Model } from 'objection';
+import Teachers from './Teachers';
+import Subjects from './Subjects';
 
 const fields = [
   'mark_qualification',
@@ -13,6 +15,27 @@ const fields = [
 export default class Profiles extends Model {
   static get tableName() {
     return 'profiles';
+  }
+
+  static get relationMappings() {
+    return {
+      subject: {
+        relation: Model.HasOneRelation,
+        modelClass: Subjects,
+        join: {
+          from: 'profiles.subject_id',
+          to: 'subjects.id',
+        },
+      },
+      teacher: {
+        relation: Model.HasOneRelation,
+        modelClass: Teachers,
+        join: {
+          from: 'teachers.id',
+          to: 'profiles.teacher_id',
+        },
+      },
+    };
   }
 
   static get jsonSchema() {

@@ -7,16 +7,18 @@ export default class Subjects extends BaseModel {
     return 'subjects';
   }
 
-  static relationMappings = {
-    teacher: {
-      relation: Model.BelongsToOneRelation,
-      modelClass: Teachers,
-      join: {
-        from: 'subjects.teacher_id',
-        to: 'teachers.id',
+  static get relationMappings() {
+    return {
+      teacher: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Teachers,
+        join: {
+          from: 'teachers.id',
+          to: 'subjects.teacher_id',
+        },
       },
-    },
-  };
+    };
+  }
 
   static get jsonSchema() {
     return {

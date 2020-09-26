@@ -5,16 +5,22 @@ export default class ProfilesRepository {
     this.model = models.Profiles;
   }
 
-  getProfiles() {
-    return this.model.query();
+  async getProfiles() {
+    return this.model.query().joinEager('[subject, teacher]');
   }
 
   getProfilesBySubjectId(id) {
-    return this.model.query().where('subject_id', id);
+    return this.model
+      .query()
+      .where('subject_id', id)
+      .joinEager('[subject, teacher]');
   }
 
   getProfilesByTeacherId(id) {
-    return this.model.query().where('teacher_id', id);
+    return this.model
+      .query()
+      .where('teacher_id', id)
+      .joinEager('[subject, teacher]');
   }
 
   insertProfile(data) {

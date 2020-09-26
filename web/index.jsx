@@ -8,12 +8,14 @@ import { Provider } from 'react-redux';
 import { App } from './App';
 
 const { profiles } = gon;
-
 console.log(profiles);
+
 const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
   reducer: {},
-  preloadedState: {},
+  preloadedState: {
+    profiles,
+  },
 });
 
 ReactDOM.render(
