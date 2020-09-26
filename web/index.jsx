@@ -6,15 +6,19 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { App } from './App';
+import { actions, reducer } from './store';
+import io from 'socket.io-client';
 
 const { profiles, subjects, teachers } = gon;
-console.log(profiles, subjects, teachers);
+
+io().on('newProfile', ({ data }) => store.dispatch(actions.addProfile(data)));
 
 const store = configureStore({
-  devTools: process.env.NODE_ENV === 'development',
-  reducer: {},
+  reducer,
   preloadedState: {
     profiles,
+    subjects,
+    teachers,
   },
 });
 
