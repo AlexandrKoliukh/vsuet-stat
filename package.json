@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Vsuet statistic manager",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "build-server": "babel backend --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
