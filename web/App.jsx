@@ -5,6 +5,8 @@ import Table from 'react-bootstrap/Table';
 import { useSelector } from 'react-redux';
 import { keys, entries, groupBy } from 'lodash';
 import { postProfile } from './service';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const marks = {
   mark_qualification: 'Квалификация',
@@ -29,7 +31,7 @@ export const App = () => {
 
   const form = useFormik({
     initialValues: {},
-    onSubmit: (values) => {
+    onSubmit: (values, formikHelpers) => {
       const data = keys(values).map((i) => {
         const [markName, subjectId, teacherId] = i.split('+');
         return {
@@ -39,7 +41,13 @@ export const App = () => {
         };
       });
       const a = validateData(data);
-      return postProfile(a);
+      return postProfile(a)
+        .then(() => {
+          toast.success('Ваш ответ был записан');
+        })
+        .catch(() => {
+          toast.error('Проверьте введенные данные и повторите попытку');
+        });
     },
   });
 
@@ -82,8 +90,18 @@ export const App = () => {
             })}
           </tbody>
         </Table>
-        <Button type="submit">Отправить анкету</Button>
+        <div className="d-flex justify-content-between">
+          <Button type="submit">Отправить анкету</Button>
+          <Button
+            type="reset"
+            onClick={() => form.resetForm({})}
+            variant="warning"
+          >
+            Сброс
+          </Button>
+        </div>
       </Form>
+      <ToastContainer />
     </>
   );
 };
