@@ -1,19 +1,19 @@
 import { Model } from 'objection';
 import BaseModel from '../../../lib/BaseModel';
-import Tasks from './Tasks';
+import Teachers from './Teachers';
 
-export default class Columns extends BaseModel {
+export default class Subjects extends BaseModel {
   static get tableName() {
-    return 'columns';
+    return 'subjects';
   }
 
   static relationMappings = {
-    owner: {
+    teacher: {
       relation: Model.BelongsToOneRelation,
-      modelClass: Tasks,
+      modelClass: Teachers,
       join: {
-        from: 'tasks.columnId',
-        to: 'columns.id',
+        from: 'subjects.teacher_id',
+        to: 'teachers.id',
       },
     },
   };
@@ -21,11 +21,11 @@ export default class Columns extends BaseModel {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['title'],
+      required: ['name, teacher_id'],
       properties: {
         id: { type: 'integer' },
-        title: { type: 'string', minLength: 1, maxLength: 100 },
-        createdAt: { type: 'date-time' },
+        name: { type: 'string', minLength: 1, maxLength: 100 },
+        teacher_id: { type: 'integer' },
       },
     };
   }

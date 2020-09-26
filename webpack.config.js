@@ -1,7 +1,7 @@
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
   entry: {
-    chat: [`${__dirname}/web/index.jsx`],
+    root: [`${__dirname}/web/index.jsx`],
   },
   externals: {
     gon: 'gon',
