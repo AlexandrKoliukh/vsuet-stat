@@ -24,6 +24,6 @@ export default class ProfilesRepository {
   }
 
   insertProfile(data) {
-    return this.model.query().insert(data).returning('*');
+    return this.model.query().insert(data);
   }
 }

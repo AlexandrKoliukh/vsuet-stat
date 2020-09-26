@@ -22,5 +22,5 @@ module.exports = {
   seeds: {
     directory: path.join(BASE_PATH, 'seeds'),
   },
-  ...knexSnakeCaseMappers(),
+  // ...knexSnakeCaseMappers(),
 };

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { useSelector } from 'react-redux';
-import { keys, entries } from 'lodash';
+import { keys, entries, groupBy } from 'lodash';
 import { postProfile } from './service';
 
 const marks = {
@@ -16,6 +16,13 @@ const marks = {
   mark_fun: 'Настроение на занятии',
 };
 
+const validateData = (data) => {
+  const dictionary = groupBy(data, 'subject_id');
+  return keys(dictionary).map((teacherId) => {
+    return dictionary[teacherId].reduce((acc, i) => ({ ...acc, ...i }), {});
+  });
+};
+
 export const App = () => {
   const subjects = useSelector((state) => state.subjects);
   const teachers = useSelector((state) => state.teachers);
@@ -25,15 +32,19 @@ export const App = () => {
     onSubmit: (values) => {
       const data = keys(values).map((i) => {
         const [markName, subjectId, teacherId] = i.split('+');
-        return { [markName]: values[i], subjectId, teacherId };
+        return {
+          [markName]: values[i],
+          subject_id: +subjectId,
+          teacher_id: +teacherId,
+        };
       });
-      console.log(data);
-      // return postProfile(data).then(console.log).catch(console.error);
+      const a = validateData(data);
+      return postProfile(a);
     },
   });
 
   const f = (markName) => (subject) => {
-    const { id, teacherId } = subject;
+    const { id, teacher_id: teacherId } = subject;
     const inputKey = `${markName}+${id}+${teacherId}`;
     return (
       <th key={id}>
@@ -50,11 +61,11 @@ export const App = () => {
             <tr>
               <th>Параметр оценивания</th>
               {subjects.map((s) => {
-                const { id, name, teacherId } = s;
+                const { id, name, teacher_id: teacherId } = s;
                 const teacher = teachers.find(({ id }) => id === teacherId);
                 return (
                   <th key={id}>
-                    {name} / {teacher.secondName}
+                    {name} / {teacher.second_name}
                   </th>
                 );
               })}

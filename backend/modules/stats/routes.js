@@ -23,10 +23,9 @@ export default (router, io) => {
     .post('/profiles', async (ctx) => {
       const { data } = ctx.request.body;
       const createdProfile = await profilesService.insertProfile(data);
-
       ctx.status = 201;
-      ctx.body = createdProfile;
-      io.emit('newProfile', createdProfile);
+      ctx.body = createdProfile[0];
+      io.emit('newProfile', createdProfile[0]);
     });
 
   return router

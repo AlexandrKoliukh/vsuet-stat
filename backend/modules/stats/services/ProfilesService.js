@@ -1,5 +1,9 @@
 import repositories from '../repositories';
 
+const createProfile = async (profile) => ({
+  ...profile,
+});
+
 export default class ProfilesService {
   constructor() {
     this.profilesRepository = new repositories.ProfilesRepository();
@@ -26,6 +30,6 @@ export default class ProfilesService {
 
   async insertProfile(data) {
     const insertedProfile = await this.profilesRepository.insertProfile(data);
-    return insertedProfile;
+    return createProfile(insertedProfile);
   }
 }
