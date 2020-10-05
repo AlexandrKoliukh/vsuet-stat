@@ -9,6 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { marks } from './constants';
 import { StatTable } from './StatTable';
+import { Chart } from './Chart';
+import { Radial } from './Radial';
 
 const validateData = (data) => {
   const dictionary = groupBy(data, 'subject_id');
@@ -23,7 +25,7 @@ export const App = () => {
 
   const form = useFormik({
     initialValues: {},
-    onSubmit: (values, formikHelpers) => {
+    onSubmit: (values) => {
       const data = keys(values).map((i) => {
         const [markName, subjectId, teacherId] = i.split('+');
         return {
@@ -98,6 +100,11 @@ export const App = () => {
       <br />
       <br />
       <StatTable />
+
+      <div className="d-flex">
+        <Chart />
+        <Radial />
+      </div>
 
       <ToastContainer />
     </>
