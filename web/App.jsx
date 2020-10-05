@@ -7,16 +7,8 @@ import { keys, entries, groupBy } from 'lodash';
 import { postProfile } from './service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const marks = {
-  mark_qualification: 'Квалификация',
-  mark_storytelling: 'Подача материала',
-  mark_relevance: 'Релевантность материала',
-  mark_usefulness: 'Полезность материала',
-  mark_clearness: 'Ясность материала',
-  mark_evaluation: 'Оценивание',
-  mark_fun: 'Настроение на занятии',
-};
+import { marks } from './constants';
+import { StatTable } from './StatTable';
 
 const validateData = (data) => {
   const dictionary = groupBy(data, 'subject_id');
@@ -101,6 +93,12 @@ export const App = () => {
           </Button>
         </div>
       </Form>
+
+      <br />
+      <br />
+      <br />
+      <StatTable />
+
       <ToastContainer />
     </>
   );
