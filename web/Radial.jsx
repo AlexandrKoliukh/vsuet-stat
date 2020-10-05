@@ -18,7 +18,7 @@ export const Radial = () => {
   });
 
   return (
-    <ResponsiveContainer width="46%" height={400}>
+    <ResponsiveContainer width="100%" height={400}>
       <RadarChart outerRadius={90} height={350} data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="teacher" />

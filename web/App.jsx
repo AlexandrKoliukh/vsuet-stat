@@ -101,7 +101,7 @@ export const App = () => {
       <br />
       <StatTable />
 
-      <div className="d-flex">
+      <div className="d-flex flex-column">
         <Chart />
         <Radial />
       </div>

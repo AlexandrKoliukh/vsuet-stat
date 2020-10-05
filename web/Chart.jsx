@@ -21,7 +21,7 @@ export const Chart = () => {
   });
 
   return (
-    <ResponsiveContainer width="46%" height={400}>
+    <ResponsiveContainer width="100%" height={400}>
       <LineChart
         data={data}
         margin={{
