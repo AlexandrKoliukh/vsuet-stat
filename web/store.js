@@ -24,7 +24,7 @@ export const averageMarksByTeacherSelector = createSelector(
       return { ...p, average: _.toNumber(average) };
     });
 
-    const byTeacher = _.groupBy(data, 'teacher.second_name');
+    const byTeacher = _.groupBy(data, 'teacher.id');
 
     const groupedByTeacher = _.mapValues(byTeacher, (i) =>
       _.groupBy(i, 'subject.name')

@@ -67,7 +67,7 @@ export const App = () => {
                 const teacher = teachers.find(({ id }) => id === teacherId);
                 return (
                   <th key={id}>
-                    {name} / {teacher.second_name}
+                    {name} / {teacher.id}
                   </th>
                 );
               })}

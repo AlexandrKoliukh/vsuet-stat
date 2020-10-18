@@ -11,8 +11,6 @@ import io from 'socket.io-client';
 
 const { profiles, subjects, teachers } = gon;
 
-io().on('newProfile', ({ data }) => store.dispatch(actions.addProfile(data)));
-
 const store = configureStore({
   reducer,
   preloadedState: {
@@ -21,6 +19,8 @@ const store = configureStore({
     teachers,
   },
 });
+
+io().on('newProfile', ({ data }) => store.dispatch(actions.addProfile(data)));
 
 ReactDOM.render(
   <Provider store={store}>
