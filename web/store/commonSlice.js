@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'common',
   initialState: {
-    selectedCluster: 1,
+    selectedCluster: 0,
   },
   reducers: {
     selectCluster: (state, action) => {
