@@ -9,11 +9,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useSelector } from 'react-redux';
-import { averageMarksByTeacherSelector } from './store';
+import { averageMarksByTeacherSelector } from '../store/profilesSlice';
 import _ from 'lodash';
-import { marks } from './constants';
+import { marks } from '../constants';
 
-export const Chart = () => {
+export const LineChartComponent = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
 
   const data = _.keys(averageMarksByTeacher).map((teacher) => {
@@ -38,6 +38,7 @@ export const Chart = () => {
         {_.entries(marks).map(([key, value], index) => {
           return (
             <Line
+              key={key}
               type="monotone"
               dataKey={key}
               stroke={a[index]}

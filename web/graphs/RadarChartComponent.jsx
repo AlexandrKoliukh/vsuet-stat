@@ -6,11 +6,11 @@ import PolarAngleAxis from 'recharts/lib/polar/PolarAngleAxis';
 import PolarGrid from 'recharts/lib/polar/PolarGrid';
 import RadarChart from 'recharts/lib/chart/RadarChart';
 import { useSelector } from 'react-redux';
-import { averageMarksByTeacherSelector } from './store';
+import { averageMarksByTeacherSelector } from '../store/profilesSlice';
 import _ from 'lodash';
 import { ResponsiveContainer } from 'recharts';
 
-export const Radial = () => {
+export const RadarChartComponent = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
 
   const data = _.keys(averageMarksByTeacher).map((teacher) => {

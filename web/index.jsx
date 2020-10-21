@@ -6,13 +6,16 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { App } from './App';
-import { actions, reducer } from './store';
 import io from 'socket.io-client';
+import { reducers } from './store';
+import { actions as profilesActions } from './store/profilesSlice';
 
 const { profiles, subjects, teachers, clusters } = gon;
 
 const store = configureStore({
-  reducer,
+  reducer: {
+    ...reducers,
+  },
   preloadedState: {
     profiles,
     subjects,
@@ -21,7 +24,9 @@ const store = configureStore({
   },
 });
 
-io().on('newProfile', ({ data }) => store.dispatch(actions.addProfile(data)));
+io().on('newProfile', ({ data }) =>
+  store.dispatch(profilesActions.addProfile(data))
+);
 
 ReactDOM.render(
   <Provider store={store}>

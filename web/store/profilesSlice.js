@@ -1,9 +1,9 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { marks } from './constants';
+import { marks } from '../constants';
 
 const slice = createSlice({
-  name: 'main',
+  name: 'profiles',
   initialState: {},
   reducers: {
     addProfile: (state, action) => {
@@ -12,8 +12,19 @@ const slice = createSlice({
   },
 });
 
-export const averageMarksByTeacherSelector = createSelector(
+export const profilesByClusterSelector = createSelector(
+  (state) => state.common.selectedCluster,
   (state) => state.profiles,
+  (clusterId, profiles) => {
+    return profiles.filter((p) => {
+      if (clusterId === 0) return profiles;
+      return p.subject.cluster_id === clusterId;
+    });
+  }
+);
+
+export const averageMarksByTeacherSelector = createSelector(
+  profilesByClusterSelector,
   (profiles) => {
     const data = profiles.map((p) => {
       const marksKeys = _.keys(marks);

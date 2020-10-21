@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { marks } from './constants';
+import { marks } from '../constants';
 import _ from 'lodash';
 import { Table } from 'react-bootstrap';
-import { averageMarksByTeacherSelector } from './store';
+import { averageMarksByTeacherSelector } from '../store/profilesSlice';
 
 export const StatTable = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
