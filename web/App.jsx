@@ -6,10 +6,11 @@ import { LineChartComponent } from './graphs/LineChartComponent';
 import { RadarChartComponent } from './graphs/RadarChartComponent';
 import { ProfileForm } from './profiles/ProfileForm';
 import { ClusterSelect } from './profiles/ClusterSelect';
+import { Container } from 'react-bootstrap';
 
 export const App = () => {
   return (
-    <>
+    <Container>
       <ClusterSelect />
       <ProfileForm />
 
@@ -24,6 +25,6 @@ export const App = () => {
       </div>
 
       <ToastContainer />
-    </>
+    </Container>
   );
 };
