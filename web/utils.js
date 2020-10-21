@@ -11,7 +11,7 @@ export const getComparedColor = (marks, commonMarks, key) => {
     const value1 = _.toNumber(marks);
     const value2 = _.toNumber(commonMarks);
 
-    if (!value1 || !value2) return '';
+    if (!value1 || !value2 || value1 === value2) return '';
 
     return value1 < value2 ? badColor : goodColor;
   }

@@ -31,7 +31,7 @@ export const StatTableClusters = () => {
           <span className="ml-1">- Ниже среднего</span>
         </div>
       </div>
-      <Table striped bordered responsive>
+      <Table bordered responsive>
         <caption>Средние оценки по кластеру</caption>
         <thead>
           <tr>

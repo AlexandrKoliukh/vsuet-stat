@@ -17,8 +17,9 @@ export const profilesByClusterSelector = createSelector(
   (state) => state.common.selectedCluster,
   (state) => state.profiles,
   (clusterId, profiles) => {
+    if (clusterId === 0) return profiles;
+
     return profiles.filter((p) => {
-      if (clusterId === 0) return profiles;
       return p.subject.cluster_id === clusterId;
     });
   }
