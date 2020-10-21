@@ -16,7 +16,11 @@ import { marks } from '../constants';
 export const LineChartComponent = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
 
-  const data = _.keys(averageMarksByTeacher).map((teacher) => {
+  const keys = _.keys(averageMarksByTeacher);
+
+  if (keys.length < 2) return null;
+
+  const data = keys.map((teacher) => {
     return { ...averageMarksByTeacher[teacher], teacher };
   });
 

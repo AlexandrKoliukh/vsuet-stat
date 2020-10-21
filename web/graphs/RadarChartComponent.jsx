@@ -13,7 +13,11 @@ import { ResponsiveContainer } from 'recharts';
 export const RadarChartComponent = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
 
-  const data = _.keys(averageMarksByTeacher).map((teacher) => {
+  const keys = _.keys(averageMarksByTeacher);
+
+  if (keys.length < 3) return null;
+
+  const data = keys.map((teacher) => {
     return { ...averageMarksByTeacher[teacher], teacher };
   });
 

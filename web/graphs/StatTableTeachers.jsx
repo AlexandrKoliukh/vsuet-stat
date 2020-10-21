@@ -5,14 +5,18 @@ import _ from 'lodash';
 import { Table } from 'react-bootstrap';
 import { averageMarksByTeacherSelector } from '../store/profilesSlice';
 
-export const StatTable = () => {
+export const StatTableTeachers = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
+  const keys = _.keys(averageMarksByTeacher);
+
+  if (keys.length < 1) return null;
 
   return (
     <Table striped bordered responsive>
+      <caption>Средние оценки преподавателей</caption>
       <thead>
         <tr>
-          <th>Преподаватель</th>
+          <th>ID</th>
           {_.values(marks).map((i) => {
             return <th key={i}>{i}</th>;
           })}
@@ -20,7 +24,7 @@ export const StatTable = () => {
         </tr>
       </thead>
       <tbody>
-        {_.keys(averageMarksByTeacher).map((teacher) => {
+        {keys.map((teacher) => {
           const score = averageMarksByTeacher[teacher];
           return (
             <tr key={`${teacher}_tr`}>

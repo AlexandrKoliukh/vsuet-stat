@@ -1,6 +1,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import { marks } from '../constants';
+import { getAverage } from '../utils';
 
 const slice = createSlice({
   name: 'profiles',
@@ -20,6 +21,13 @@ export const profilesByClusterSelector = createSelector(
       if (clusterId === 0) return profiles;
       return p.subject.cluster_id === clusterId;
     });
+  }
+);
+
+export const profilesGroupedByCluster = createSelector(
+  (state) => state.profiles,
+  (profiles) => {
+    return _.groupBy(profiles, 'subject.cluster_id');
   }
 );
 
@@ -51,14 +59,41 @@ export const averageMarksByTeacherSelector = createSelector(
         const profiles = subjects[subject];
         const q = [..._.keys(marks), 'average'];
         const averageMarks = q.reduce((acc, markName) => {
-          const mark = _.sumBy(profiles, markName) / profiles.length;
-          return { ...acc, [markName]: mark.toFixed(2) };
+          const mark = getAverage(profiles, markName);
+          return { ...acc, [markName]: mark };
         }, {});
         result[teacher] = averageMarks;
       });
     });
 
     return result;
+  }
+);
+
+const getAverageByMarks = (profiles) => {
+  const averageMarks = {};
+
+  _.keys(marks).forEach((markName) => {
+    averageMarks[markName] = getAverage(profiles, markName);
+  });
+
+  const common = (
+    _.toNumber(_.sum(_.values(averageMarks).map(_.toNumber))) /
+    _.keys(marks).length
+  ).toFixed(2);
+
+  return { averageMarks, common };
+};
+
+export const averageMarksByClusterSelector = createSelector(
+  profilesByClusterSelector,
+  getAverageByMarks
+);
+
+export const averageByClustersSelector = createSelector(
+  (state) => state.profiles,
+  (profiles) => {
+    return getAverageByMarks(profiles);
   }
 );
 
