@@ -6,6 +6,6 @@ export default class SubjectsRepository {
   }
 
   async getSubjects() {
-    return this.model.query();
+    return this.model.query().joinEager('[cluster, teacher]');
   }
 }

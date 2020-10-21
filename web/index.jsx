@@ -9,7 +9,7 @@ import { App } from './App';
 import { actions, reducer } from './store';
 import io from 'socket.io-client';
 
-const { profiles, subjects, teachers } = gon;
+const { profiles, subjects, teachers, clusters } = gon;
 
 const store = configureStore({
   reducer,
@@ -17,6 +17,7 @@ const store = configureStore({
     profiles,
     subjects,
     teachers,
+    clusters,
   },
 });
 

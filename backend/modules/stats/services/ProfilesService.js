@@ -28,6 +28,13 @@ export default class ProfilesService {
     return profiles;
   }
 
+  async getProfilesByClusterId(clusterId) {
+    const profiles = await this.profilesRepository.getProfilesByClusterId(
+      clusterId
+    );
+    return profiles;
+  }
+
   async insertProfile(data) {
     const insertedProfile = await this.profilesRepository.insertProfile(data);
     return createProfile(insertedProfile);
