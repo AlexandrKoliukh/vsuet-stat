@@ -33,6 +33,6 @@ export default class ProfilesRepository {
   }
 
   insertProfile(data) {
-    return this.model.query().insert(data);
+    return this.model.query().insert(data).withGraphFetched(relations);
   }
 }

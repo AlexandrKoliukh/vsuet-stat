@@ -24,7 +24,7 @@ const store = configureStore({
   },
 });
 
-io().on('newProfile', ({ data }) =>
+io().on('newProfile', (data) =>
   store.dispatch(profilesActions.addProfile(data))
 );
 

@@ -8,7 +8,7 @@ const slice = createSlice({
   initialState: {},
   reducers: {
     addProfile: (state, action) => {
-      state.profiles.push(action.payload);
+      state.push(action.payload);
     },
   },
 });
