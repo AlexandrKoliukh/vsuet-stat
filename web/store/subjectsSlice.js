@@ -17,4 +17,16 @@ export const subjectsByClusterSelector = createSelector(
   }
 );
 
+export const subjectsByTeacherSelector = createSelector(
+  (state) => state.common.modalState.data.teacherId,
+  (state) => state.subjects,
+  (teacherId, subjects) => {
+    return subjects.filter((i) => {
+      const id = _.toNumber(teacherId);
+      if (id === 0) return subjects;
+      return i.teacher_id === id;
+    });
+  }
+);
+
 export const { reducer, actions } = slice;

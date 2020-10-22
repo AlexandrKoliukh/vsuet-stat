@@ -1,15 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { marks } from '../constants';
 import _ from 'lodash';
 import { Table } from 'react-bootstrap';
 import { averageMarksByTeacherSelector } from '../store/profilesSlice';
+import { FaInfoCircle } from 'react-icons/fa';
+import { actions } from '../store/commonSlice';
 
 export const StatTableTeachers = () => {
+  const dispatch = useDispatch();
+
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
   const keys = _.keys(averageMarksByTeacher);
 
   if (keys.length < 1) return null;
+
+  const handleTeacherInfoClick = (teacherId) => () => {
+    dispatch(actions.showModal({ type: 'teacherInfo', data: { teacherId } }));
+  };
 
   return (
     <Table striped bordered responsive>
@@ -24,13 +32,20 @@ export const StatTableTeachers = () => {
         </tr>
       </thead>
       <tbody>
-        {keys.map((teacher) => {
-          const score = averageMarksByTeacher[teacher];
+        {keys.map((teacherId) => {
+          const score = averageMarksByTeacher[teacherId];
           return (
-            <tr key={`${teacher}_tr`}>
-              <td>{teacher}</td>
+            <tr key={`${teacherId}_tr`}>
+              <td
+                onClick={handleTeacherInfoClick(teacherId)}
+                style={{ cursor: 'pointer' }}
+                className="d-flex"
+              >
+                <FaInfoCircle size={12} />
+                {teacherId}
+              </td>
               {_.values(score).map((i, index) => {
-                return <td key={`${teacher}_td_${index}`}>{i}</td>;
+                return <td key={`${teacherId}_td_${index}`}>{i}</td>;
               })}
             </tr>
           );
