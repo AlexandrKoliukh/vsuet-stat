@@ -22,8 +22,8 @@ export const RadarChartComponent = () => {
   });
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <RadarChart outerRadius={90} height={350} data={data}>
+    <ResponsiveContainer width="100%" height={350}>
+      <RadarChart outerRadius={120} height={350} data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="teacher" />
         <PolarRadiusAxis angle={30} />

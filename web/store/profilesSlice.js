@@ -102,11 +102,9 @@ export const averageMarksByClusterSelector = createSelector(
   getAverageByMarks
 );
 
-export const averageByClustersSelector = createSelector(
+export const averageByAllSelector = createSelector(
   (state) => state.profiles,
-  (profiles) => {
-    return getAverageByMarks(profiles);
-  }
+  getAverageByMarks
 );
 
 export const { reducer, actions } = slice;

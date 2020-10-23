@@ -4,7 +4,7 @@ import { badColor, goodColor, marks } from '../constants';
 import _ from 'lodash';
 import { Table } from 'react-bootstrap';
 import {
-  averageByClustersSelector,
+  averageByAllSelector,
   averageMarksByClusterSelector,
   profilesByClusterSelector,
 } from '../store/profilesSlice';
@@ -17,7 +17,7 @@ export const StatTableClusters = () => {
   } = useSelector(averageMarksByClusterSelector);
   const { length: totalProfiles } = useSelector(profilesByClusterSelector);
 
-  const { averageMarks, common } = useSelector(averageByClustersSelector);
+  const { averageMarks, common } = useSelector(averageByAllSelector);
 
   if (!_.toNumber(commonByCluster)) return null;
 

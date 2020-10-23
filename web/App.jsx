@@ -32,13 +32,9 @@ export const App = () => {
       <br />
 
       <StatTableClusters />
-
       <StatTableTeachers />
-
-      <div className="d-flex flex-column">
-        <LineChartComponent />
-        <RadarChartComponent />
-      </div>
+      <LineChartComponent />
+      <RadarChartComponent />
 
       <ModalRoot />
       <ToastContainer />
