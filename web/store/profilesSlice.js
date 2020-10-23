@@ -13,6 +13,17 @@ const slice = createSlice({
   },
 });
 
+export const profilesByTeacherSelector = createSelector(
+  (state) => state.profiles,
+  (state) => state.common.modalState.data.teacherId,
+
+  (profiles, teacherId) => {
+    return profiles.filter((p) => {
+      return p.teacher_id === teacherId;
+    });
+  }
+);
+
 export const profilesByClusterSelector = createSelector(
   (state) => state.common.selectedCluster,
   (state) => state.profiles,

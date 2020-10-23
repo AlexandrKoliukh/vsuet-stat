@@ -6,6 +6,7 @@ import { Table } from 'react-bootstrap';
 import {
   averageByClustersSelector,
   averageMarksByClusterSelector,
+  profilesByClusterSelector,
 } from '../store/profilesSlice';
 import { getComparedColor } from '../utils';
 
@@ -14,6 +15,7 @@ export const StatTableClusters = () => {
     averageMarks: averageMarksByCluster,
     common: commonByCluster,
   } = useSelector(averageMarksByClusterSelector);
+  const { length: totalProfiles } = useSelector(profilesByClusterSelector);
 
   const { averageMarks, common } = useSelector(averageByClustersSelector);
 
@@ -21,14 +23,24 @@ export const StatTableClusters = () => {
 
   return (
     <>
-      <div className="d-flex mb-3">
-        <div className="d-flex mr-3">
-          <div style={{ backgroundColor: goodColor, width: 100, height: 20 }} />
-          <span className="ml-1">- Выше среднего</span>
-        </div>
+      <div className="d-flex mb-3 justify-content-between flex-wrap">
         <div className="d-flex">
-          <div style={{ backgroundColor: badColor, width: 100, height: 20 }} />
-          <span className="ml-1">- Ниже среднего</span>
+          <div className="d-flex mr-3">
+            <div
+              style={{ backgroundColor: goodColor, width: 100, height: 20 }}
+            />
+            <span className="ml-1">- Выше среднего</span>
+          </div>
+          <div className="d-flex">
+            <div
+              style={{ backgroundColor: badColor, width: 100, height: 20 }}
+            />
+            <span className="ml-1">- Ниже среднего</span>
+          </div>
+        </div>
+
+        <div className="d-flex">
+          <span className="ml-1">Всего оценок: {totalProfiles}</span>
         </div>
       </div>
       <Table bordered responsive>

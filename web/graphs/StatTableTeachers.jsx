@@ -16,7 +16,12 @@ export const StatTableTeachers = () => {
   if (keys.length < 1) return null;
 
   const handleTeacherInfoClick = (teacherId) => () => {
-    dispatch(actions.showModal({ type: 'teacherInfo', data: { teacherId } }));
+    dispatch(
+      actions.showModal({
+        type: 'teacherInfo',
+        data: { teacherId: +teacherId },
+      })
+    );
   };
 
   return (
