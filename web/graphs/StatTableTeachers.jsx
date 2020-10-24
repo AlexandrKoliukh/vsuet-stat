@@ -25,7 +25,7 @@ export const StatTableTeachers = () => {
   };
 
   return (
-    <Table striped bordered responsive>
+    <Table striped bordered responsive hover>
       <caption>Средние оценки преподавателей</caption>
       <thead>
         <tr>
@@ -40,12 +40,12 @@ export const StatTableTeachers = () => {
         {keys.map((teacherId) => {
           const score = averageMarksByTeacher[teacherId];
           return (
-            <tr key={`${teacherId}_tr`}>
-              <td
-                onClick={handleTeacherInfoClick(teacherId)}
-                style={{ cursor: 'pointer' }}
-                className="d-flex"
-              >
+            <tr
+              key={`${teacherId}_tr`}
+              style={{ cursor: 'pointer' }}
+              onClick={handleTeacherInfoClick(teacherId)}
+            >
+              <td className="d-flex">
                 <FaInfoCircle size={12} />
                 {teacherId}
               </td>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ReferenceLine,
   LineChart,
   XAxis,
   YAxis,
@@ -9,12 +10,16 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { useSelector } from 'react-redux';
-import { averageMarksByTeacherSelector } from '../store/profilesSlice';
+import {
+  averageMarksByClusterSelector,
+  averageMarksByTeacherSelector,
+} from '../store/profilesSlice';
 import _ from 'lodash';
 import { marks } from '../constants';
 
 export const LineChartComponent = () => {
   const averageMarksByTeacher = useSelector(averageMarksByTeacherSelector);
+  const { common } = useSelector(averageMarksByClusterSelector);
 
   const keys = _.keys(averageMarksByTeacher);
 
@@ -39,6 +44,19 @@ export const LineChartComponent = () => {
         <XAxis dataKey="teacher" />
         <YAxis />
         <Tooltip />
+        <ReferenceLine
+          y={+common}
+          label={{
+            position: 'insideTopRight',
+            value: 'Общее среднее',
+            fill: 'red',
+            fontSize: 14,
+          }}
+          stroke="red"
+          strokeDasharray="3 3"
+          isFront
+          strokeWidth={2}
+        />
         {_.entries(marks).map(([key, value], index) => {
           return (
             <Line
