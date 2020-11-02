@@ -9,7 +9,15 @@ import { postProfile } from '../service';
 import { toast } from 'react-toastify';
 import { subjectsByClusterSelector } from '../store/subjectsSlice';
 
-const validateData = (data) => {
+const validateData = (values) => {
+  const data = keys(values).map((i) => {
+    const [markName, subjectId, teacherId] = i.split('+');
+    return {
+      [markName]: values[i],
+      subject_id: +subjectId,
+      teacher_id: +teacherId,
+    };
+  });
   const dictionary = groupBy(data, 'subject_id');
   return keys(dictionary).map((teacherId) => {
     return dictionary[teacherId].reduce((acc, i) => ({ ...acc, ...i }), {});
@@ -23,16 +31,13 @@ export const ProfileForm = () => {
   const form = useFormik({
     initialValues: {},
     onSubmit: (values) => {
-      const data = keys(values).map((i) => {
-        const [markName, subjectId, teacherId] = i.split('+');
-        return {
-          [markName]: values[i],
-          subject_id: +subjectId,
-          teacher_id: +teacherId,
-        };
-      });
-      const a = validateData(data);
-      return postProfile(a)
+      const data = validateData(values);
+      console.log(data);
+      if (data.length === 0) {
+        toast.warn('Нужно заполнить хотя бы один предмет');
+        return;
+      }
+      return postProfile(data)
         .then(() => {
           toast.success('Ваш ответ был записан');
         })
@@ -45,12 +50,20 @@ export const ProfileForm = () => {
   const f = (markName) => (subject) => {
     const { id, teacher_id: teacherId } = subject;
     const inputKey = `${markName}+${id}+${teacherId}`;
+    const value = form.values[inputKey] ?? '';
     return (
       <th key={id}>
-        <Form.Control type="number" name={inputKey} min="0" max="10" />
+        <Form.Control
+          type="number"
+          value={value}
+          name={inputKey}
+          min="0"
+          max="10"
+        />
       </th>
     );
   };
+
   return (
     <Form onSubmit={form.handleSubmit} onChange={form.handleChange}>
       <Table responsive>
@@ -72,7 +85,7 @@ export const ProfileForm = () => {
           {entries(marks).map(([name, capture]) => {
             return (
               <tr key={name}>
-                <td>{capture}</td>
+                <td style={{ minWidth: 250 }}>{capture}</td>
                 {subjects.map(f(name))}
               </tr>
             );
@@ -81,11 +94,7 @@ export const ProfileForm = () => {
       </Table>
       <div className="d-flex justify-content-between">
         <Button type="submit">Отправить анкету</Button>
-        <Button
-          type="reset"
-          onClick={() => form.resetForm({})}
-          variant="warning"
-        >
+        <Button onClick={() => form.resetForm({})} variant="warning">
           Сброс
         </Button>
       </div>

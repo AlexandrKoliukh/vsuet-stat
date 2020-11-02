@@ -1,11 +1,11 @@
 export const marks = {
-  mark_qualification: 'Квалификация',
-  mark_storytelling: 'Подача материала',
-  mark_relevance: 'Релевантность материала',
-  mark_usefulness: 'Полезность материала',
-  mark_clearness: 'Ясность материала',
-  mark_evaluation: 'Оценивание',
-  mark_fun: 'Настроение на занятии',
+  mark_qualification: 'Привлечение к научной деятельности',
+  mark_storytelling: 'Ясное и доступное изложение материала',
+  mark_relevance: 'Использование современных методов обучения',
+  mark_usefulness: 'Связь с практической деятельностью',
+  mark_clearness: 'Обеспеченность учебно-методическими материалами',
+  mark_evaluation: 'Объективность в оценке',
+  mark_fun: 'Эффективное использование времени на занятиях',
 };
 
 export const badColor = '#ff7675';

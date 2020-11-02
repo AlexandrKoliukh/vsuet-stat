@@ -68,12 +68,12 @@ const BarChartComponent = ({ data = [] }) => {
           <span className="ml-1">- Среднее по факультету</span>
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={400}>
+      <ResponsiveContainer width="100%" height={600}>
         <BarChart
           layout={'vertical'}
           data={teacherData}
           margin={{
-            left: 60,
+            left: 70,
           }}
         >
           <Tooltip formatter={(value, name) => [value, a[name]]} />

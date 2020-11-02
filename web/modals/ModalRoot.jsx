@@ -23,7 +23,7 @@ export const ModalRoot = () => {
   };
 
   return (
-    <Modal show size="lg" onHide={handleClose}>
+    <Modal show size="xl" onHide={handleClose}>
       <Component data={data} />
     </Modal>
   );
