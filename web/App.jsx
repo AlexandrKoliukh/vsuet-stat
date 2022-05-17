@@ -25,6 +25,9 @@ export const App = () => {
           </a>
         </div>
       </div>
+
+      <p>Оценка от 2 до 5</p>
+
       <ProfileForm />
 
       <br />
