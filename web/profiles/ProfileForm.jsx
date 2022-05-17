@@ -32,7 +32,6 @@ export const ProfileForm = () => {
     initialValues: {},
     onSubmit: (values) => {
       const data = validateData(values);
-      console.log(data);
       if (data.length === 0) {
         toast.warn('Нужно заполнить хотя бы один предмет');
         return;
@@ -57,8 +56,8 @@ export const ProfileForm = () => {
           type="number"
           value={value}
           name={inputKey}
-          min="0"
-          max="10"
+          min="2"
+          max="5"
         />
       </th>
     );
