@@ -10,6 +10,7 @@ import { Container } from 'react-bootstrap';
 import { StatTableClusters } from './graphs/StatTableClusters';
 import { FaTelegram } from 'react-icons/fa';
 import { ModalRoot } from './modals/ModalRoot';
+import { StatTableSubjects } from './graphs/StatTableSubjects';
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
         <div className="pt-3">
           <a
             href="https://t.me/joinchat/Fk7iMEUz9NgDaNTGhWDiIA"
+            // eslint-disable-next-line react/jsx-no-target-blank
             target="_blank"
           >
             <FaTelegram size={32} /> Обсуждение
@@ -34,6 +36,7 @@ export const App = () => {
       <br />
       <br />
 
+      <StatTableSubjects />
       <StatTableClusters />
       <StatTableTeachers />
       <LineChartComponent />

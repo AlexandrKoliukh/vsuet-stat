@@ -8,6 +8,7 @@ import { useFormik } from 'formik';
 import { postProfile } from '../service';
 import { toast } from 'react-toastify';
 import { subjectsByClusterSelector } from '../store/subjectsSlice';
+import './style.css';
 
 const validateData = (values) => {
   const data = keys(values).map((i) => {
@@ -49,7 +50,7 @@ export const ProfileForm = () => {
   const f = (markName) => (subject) => {
     const { id, teacher_id: teacherId } = subject;
     const inputKey = `${markName}+${id}+${teacherId}`;
-    const value = form.values[inputKey] ?? '';
+    const value = form.values[inputKey] || '';
     return (
       <th key={id}>
         <Form.Control
@@ -58,6 +59,7 @@ export const ProfileForm = () => {
           name={inputKey}
           min="2"
           max="5"
+          style={{ minWidth: 100 }}
         />
       </th>
     );
@@ -65,10 +67,12 @@ export const ProfileForm = () => {
 
   return (
     <Form onSubmit={form.handleSubmit} onChange={form.handleChange}>
-      <Table responsive>
+      <Table responsive className="profile-form-table">
         <thead>
           <tr>
-            <th>Параметр оценивания</th>
+            <th>
+              <div className="bg-white d-block h-100">Параметр оценивания</div>
+            </th>
             {subjects.map((s) => {
               const { id, name, teacher_id: teacherId } = s;
               const teacher = teachers.find(({ id }) => id === teacherId);
@@ -84,7 +88,9 @@ export const ProfileForm = () => {
           {entries(marks).map(([name, capture]) => {
             return (
               <tr key={name}>
-                <td style={{ minWidth: 250 }}>{capture}</td>
+                <td style={{ minWidth: 250 }}>
+                  <span className="bg-white d-block">{capture}</span>
+                </td>
                 {subjects.map(f(name))}
               </tr>
             );

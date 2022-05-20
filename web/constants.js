@@ -10,3 +10,5 @@ export const marks = {
 
 export const badColor = '#ff7675';
 export const goodColor = '#55efc4';
+
+export const availableMarkValues = [2, 3, 4, 5];

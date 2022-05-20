@@ -25,37 +25,40 @@ export const StatTableTeachers = () => {
   };
 
   return (
-    <Table striped bordered responsive hover>
-      <caption>Средние оценки преподавателей</caption>
-      <thead>
-        <tr>
-          <th>ID</th>
-          {_.values(marks).map((i) => {
-            return <th key={i}>{i}</th>;
+    <>
+      <h3>Средние оценки по преподавателям</h3>
+      <Table striped bordered responsive hover className="mt-3">
+        <caption>Средние оценки преподавателей</caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            {_.values(marks).map((i) => {
+              return <th key={i}>{i}</th>;
+            })}
+            <th>Общее среднее</th>
+          </tr>
+        </thead>
+        <tbody>
+          {keys.map((teacherId) => {
+            const score = averageMarksByTeacher[teacherId];
+            return (
+              <tr
+                key={`${teacherId}_tr`}
+                style={{ cursor: 'pointer' }}
+                onClick={handleTeacherInfoClick(teacherId)}
+              >
+                <td className="d-flex">
+                  <FaInfoCircle size={12} />
+                  {teacherId}
+                </td>
+                {_.values(score).map((i, index) => {
+                  return <td key={`${teacherId}_td_${index}`}>{i}</td>;
+                })}
+              </tr>
+            );
           })}
-          <th>Общее среднее</th>
-        </tr>
-      </thead>
-      <tbody>
-        {keys.map((teacherId) => {
-          const score = averageMarksByTeacher[teacherId];
-          return (
-            <tr
-              key={`${teacherId}_tr`}
-              style={{ cursor: 'pointer' }}
-              onClick={handleTeacherInfoClick(teacherId)}
-            >
-              <td className="d-flex">
-                <FaInfoCircle size={12} />
-                {teacherId}
-              </td>
-              {_.values(score).map((i, index) => {
-                return <td key={`${teacherId}_td_${index}`}>{i}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+        </tbody>
+      </Table>
+    </>
   );
 };

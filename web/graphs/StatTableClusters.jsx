@@ -23,7 +23,8 @@ export const StatTableClusters = () => {
 
   return (
     <>
-      <div className="d-flex mb-3 justify-content-between flex-wrap">
+      <h3>Средние оценки по кластеру</h3>
+      <div className="d-flex mb-3 justify-content-between flex-wrap mt-3">
         <div className="d-flex">
           <div className="d-flex mr-3">
             <div
