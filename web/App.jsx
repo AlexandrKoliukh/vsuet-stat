@@ -1,16 +1,17 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { StatTableTeachers } from './graphs/StatTableTeachers';
-import { LineChartComponent } from './graphs/LineChartComponent';
-import { RadarChartComponent } from './graphs/RadarChartComponent';
+import { StatTableTeachers } from './items/StatTableTeachers';
+import { LineChartComponent } from './items/LineChartComponent';
+import { RadarChartComponent } from './items/RadarChartComponent';
 import { ProfileForm } from './profiles/ProfileForm';
 import { ClusterSelect } from './profiles/ClusterSelect';
 import { Container } from 'react-bootstrap';
-import { StatTableClusters } from './graphs/StatTableClusters';
+import { StatTableClusters } from './items/StatTableClusters';
 import { FaTelegram } from 'react-icons/fa';
 import { ModalRoot } from './modals/ModalRoot';
-import { StatTableSubjects } from './graphs/StatTableSubjects';
+import { StatTableSubjects } from './items/StatTableSubjects';
+import { MarkInfoButton } from './items/MarkInfoButton';
 
 export const App = () => {
   return (
@@ -28,7 +29,7 @@ export const App = () => {
         </div>
       </div>
 
-      <p>Оценка от 2 до 5</p>
+      <MarkInfoButton />
 
       <ProfileForm />
 

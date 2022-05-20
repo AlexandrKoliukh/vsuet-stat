@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { actions } from '../store/commonSlice';
 import { TeacherInfo } from './TeacherInfo';
+import { MarkValuesInfo } from './MarkValuesInfo';
 
 export const modalTypes = {
   teacherInfo: TeacherInfo,
+  marksInfo: MarkValuesInfo,
 };
 
 export const ModalRoot = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { entries, groupBy, keys } from 'lodash';
-import { marks } from '../constants';
+import { availableMarkValues, marks } from '../constants';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { postProfile } from '../service';
@@ -57,8 +57,8 @@ export const ProfileForm = () => {
           type="number"
           value={value}
           name={inputKey}
-          min="2"
-          max="5"
+          min={availableMarkValues.at(0)}
+          max={availableMarkValues.at(-1)}
           style={{ minWidth: 100 }}
         />
       </th>

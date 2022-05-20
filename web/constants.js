@@ -11,4 +11,10 @@ export const marks = {
 export const badColor = '#ff7675';
 export const goodColor = '#55efc4';
 
-export const availableMarkValues = [2, 3, 4, 5];
+export const availableMarkValues = [1, 2, 3, 4];
+export const availableMarkDefinition = [
+  'Полностью отсутствует',
+  'Присутствует, но слабо выражено',
+  'Присутствует полностью, но хотелось бы лучше',
+  'Полностью удовлетворяет',
+];
