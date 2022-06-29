@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "teacher_id": 14,
+    "subject_id": 8,
+    "mark_qualification": 3,
+    "mark_storytelling": 3,
+    "mark_relevance": 4,
+    "mark_fun": 3,
+    "mark_usefulness": 4,
+    "mark_clearness": 2,
+    "mark_evaluation": 2,
+    "subject": {
+      "id": 8,
+      "name": "Базы данных",
+      "teacher_id": 14,
+      "cluster_id": 5,
+      "cluster": {
+        "id": 5,
+        "name": "Базы данных"
+      },
+      "teacher": {
+        "id": 14,
+        "first_name": "",
+        "second_name": "Ойцева",
+        "middle_name": ""
+      }
+    },
+    "teacher": {
+      "id": 14,
+      "first_name": "",
+      "second_name": "Ойцева",
+      "middle_name": ""
+    }
+  },
+  {
+    "id": 2,
+    "teacher_id": 14,
+    "subject_id": 10,
+    "mark_qualification": 2,
+    "mark_storytelling": 4,
+    "mark_relevance": 4,
+    "mark_fun": 5,
+    "mark_usefulness": 2,
+    "mark_clearness": 5,
+    "mark_evaluation": 4,
+    "subject": {
+      "id": 10,
+      "name": "SQL",
+      "teacher_id": 14,
+      "cluster_id": 5,
+      "cluster": {
+        "id": 5,
+        "name": "Базы данных"
+      },
+      "teacher": {
+        "id": 14,
+        "first_name": "",
+        "second_name": "Ойцева",
+        "middle_name": ""
+      }
+    },
+    "teacher": {
+      "id": 14,
+      "first_name": "",
+      "second_name": "Ойцева",
+      "middle_name": ""
+    }
+  },
+  {
+    "id": 3,
+    "teacher_id": 10,
+    "subject_id": 9,
+    "mark_qualification": 4,
+    "mark_storytelling": 2,
+    "mark_relevance": 4,
+    "mark_fun": 3,
+    "mark_usefulness": 4,
+    "mark_clearness": 4,
+    "mark_evaluation": 5,
+    "subject": {
+      "id": 9,
+      "name": "WEB программирование",
+      "teacher_id": 10,
+      "cluster_id": 1,
+      "cluster": {
+        "id": 1,
+        "name": "WEB разработка"
+      },
+      "teacher": {
+        "id": 10,
+        "first_name": "",
+        "second_name": "Мачтаков",
+        "middle_name": ""
+      }
+    },
+    "teacher": {
+      "id": 10,
+      "first_name": "",
+      "second_name": "Мачтаков",
+      "middle_name": ""
+    }
+  },
+  {
+    "id": 4,
+    "teacher_id": 14,
+    "subject_id": 10,
+    "mark_qualification": 2,
+    "mark_storytelling": 4,
+    "mark_relevance": 4,
+    "mark_fun": 5,
+    "mark_usefulness": 2,
+    "mark_clearness": 5,
+    "mark_evaluation": 4,
+    "subject": {
+      "id": 10,
+      "name": "SQL",
+      "teacher_id": 14,
+      "cluster_id": 5,
+      "cluster": {
+        "id": 5,
+        "name": "Базы данных"
+      },
+      "teacher": {
+        "id": 14,
+        "first_name": "",
+        "second_name": "Ойцева",
+        "middle_name": ""
+      }
+    },
+    "teacher": {
+      "id": 14,
+      "first_name": "",
+      "second_name": "Ойцева",
+      "middle_name": ""
+    }
+  },
+  {
+    "id": 5,
+    "teacher_id": 13,
+    "subject_id": 13,
+    "mark_qualification": 5,
+    "mark_storytelling": 5,
+    "mark_relevance": 4,
+    "mark_fun": 5,
+    "mark_usefulness": 3,
+    "mark_clearness": 2,
+    "mark_evaluation": 4,
+    "subject": {
+      "id": 13,
+      "name": "Программирование на PHP",
+      "teacher_id": 13,
+      "cluster_id": 1,
+      "cluster": {
+        "id": 1,
+        "name": "WEB разработка"
+      },
+      "teacher": {
+        "id": 13,
+        "first_name": "",
+        "second_name": "Арапов",
+        "middle_name": ""
+      }
+    },
+    "teacher": {
+      "id": 13,
+      "first_name": "",
+      "second_name": "Арапов",
+      "middle_name": ""
+    }
+  }
+]

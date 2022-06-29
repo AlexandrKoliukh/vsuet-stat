@@ -1,0 +1,4 @@
+.profile-form-table td:first-child {
+  position:sticky;
+  left:0;
+}

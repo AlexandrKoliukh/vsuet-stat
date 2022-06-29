@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { badColor, goodColor, marks } from './constants';
+import { availableMarkValues, badColor, goodColor, marks } from './constants';
 
 export const getAverage = (list, key) => {
   const average = _.sumBy(list, key) / list.length;
@@ -19,6 +19,49 @@ export const getAverageByMarks = (profiles) => {
   ).toFixed(2);
 
   return { averageMarks, common };
+};
+
+export const sortSubjectsByLimits = (profiles) => {
+  const marksGroupedBySubject = _.groupBy(profiles, 'subject_id');
+
+  const mapped = _.keys(marksGroupedBySubject).map((subjectId) => {
+    const item = marksGroupedBySubject[subjectId];
+    const marksForSubject = item
+      .map((p) => {
+        const marksForProfile = [];
+        _.keys(marks).forEach((markName) => {
+          marksForProfile.push(p[markName]);
+        });
+
+        return marksForProfile;
+      })
+      .flat()
+      .sort();
+
+    return {
+      subjectId,
+      marks: marksForSubject,
+    };
+  });
+
+  mapped.sort((a, b) => {
+    const aCounts = _.countBy(a.marks);
+    const bCounts = _.countBy(b.marks);
+
+    for (let i = 0; i < availableMarkValues.length; i++) {
+      const mark = availableMarkValues[i];
+      if (!_.has(bCounts, mark) && !_.has(aCounts, mark)) continue;
+      if (!_.has(bCounts, mark)) return 1;
+      if (aCounts[mark] > bCounts[mark]) return 1;
+
+      if (!_.has(aCounts, mark)) return -1;
+      if (aCounts[mark] < bCounts[mark]) return -1;
+    }
+
+    return 0;
+  });
+
+  return mapped.map(({ subjectId }) => Number(subjectId));
 };
 
 export const getComparedColor = (marks, commonMarks, key) => {
